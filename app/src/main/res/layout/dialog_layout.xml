@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/et_dialog_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/raleway_light"
+        android:hint="Название"
+        android:gravity="center_vertical"
+        android:inputType="text"
+        android:padding="8dp"
+        android:textColor="@color/blue"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/et_dialog_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="@font/raleway_light"
+        android:hint="Название"
+        android:inputType="text"
+        android:padding="8dp"
+        android:textColor="@color/blue"
+        android:textSize="20sp" />
+
+
+</LinearLayout>

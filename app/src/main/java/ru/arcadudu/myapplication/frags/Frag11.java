@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,6 +21,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 import java.util.List;
 
+import ru.arcadudu.myapplication.MyInterface;
 import ru.arcadudu.myapplication.R;
 import ru.arcadudu.myapplication.notes.Note;
 import ru.arcadudu.myapplication.notes.NoteAdapter;
@@ -29,6 +31,8 @@ public class Frag11 extends Fragment {
     private RecyclerView recycler;
     private NoteAdapter adapter;
     private List<Note> list = new ArrayList<>();
+    MyInterface myInterface;
+
 
     TextView tvEmptyNotes;
     FloatingActionButton fabAdd;
@@ -54,25 +58,7 @@ public class Frag11 extends Fragment {
         fabAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                LayoutInflater inflater = getLayoutInflater();
-                View dialogLayout = inflater.inflate(R.layout.dialog_layout, null);
-                final EditText etTitle = dialogLayout.findViewById(R.id.et_dialog_title);
-                final EditText etContent = dialogLayout.findViewById(R.id.et_dialog_content);
-                builder.setTitle("Новая заметка")
-                        .setPositiveButton("Ок", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                String title = etTitle.getText().toString();
-                                String content = etContent.getText().toString();
-                                Note note = new Note(title, content);
-                                list.add(note);
-                                adapter.notifyDataSetChanged();
-                                checkIfNoNotes(list);
-                            }
-                        }).setView(dialogLayout).show();
-
-
+                showDialog();
             }
         });
     }
@@ -85,5 +71,34 @@ public class Frag11 extends Fragment {
         }
     }
 
+    public void showDialog() {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        LayoutInflater inflater = getLayoutInflater();
+        View dialogLayout = inflater.inflate(R.layout.dialog_layout, null);
+        final EditText etTitle = dialogLayout.findViewById(R.id.et_dialog_title);
+        final EditText etContent = dialogLayout.findViewById(R.id.et_dialog_content);
+        builder.setTitle("Новая заметка")
+                .setPositiveButton("Ок", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        String title = etTitle.getText().toString();
+                        String content = etContent.getText().toString();
+                        if (!title.isEmpty()) {
+                            Note note = new Note(title, content);
+                            list.add(note);
+                        } else {
+                            Toast.makeText(getContext(), "Название не может быть пустым!", Toast.LENGTH_SHORT).show();
+                            showDialog();
+                        }
+                        adapter.notifyDataSetChanged();
+                        checkIfNoNotes(list);
+                    }
+                }).setView(dialogLayout).show();
 
+
+    }
+
+    public void registerCallback(MyInterface myinterface){
+        this.myInterface = myinterface;
+    }
 }

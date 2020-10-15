@@ -15,7 +15,7 @@ import ru.arcadudu.myapplication.frags.Frag1;
 import ru.arcadudu.myapplication.frags.Frag11;
 import ru.arcadudu.myapplication.frags.Frag2;
 
-public class MainActivity extends AppCompatActivity{
+public class MainActivity extends AppCompatActivity implements MyInterface {
 
     ViewPager pager;
     TabLayout tabLayout;
@@ -38,7 +38,17 @@ public class MainActivity extends AppCompatActivity{
         pager.setAdapter(pagerAdapter);
         tabLayout.setupWithViewPager(pager);
 
+        Frag11 frag11 = (Frag11)list.get(0);
+        frag11.registerCallback(this);
 
+
+    }
+
+
+    @Override
+    public void setContent(String title, String content) {
+        Frag2 frag2 = (Frag2) list.get(1);
+        frag2.setCardContent(title, content);
     }
 
 

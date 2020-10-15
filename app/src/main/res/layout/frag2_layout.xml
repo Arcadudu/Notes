@@ -27,7 +27,6 @@
                 android:fontFamily="@font/raleway"
                 android:gravity="center_vertical|start"
                 android:paddingStart="16dp"
-                android:text="Text title"
                 android:textColor="@color/white"
                 android:textSize="22sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -35,13 +34,12 @@
                 app:layout_constraintTop_toTopOf="parent"/>
 
             <TextView
-                android:id="@+id/tv_frag2_text"
+                android:id="@+id/tv_frag2_content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/raleway_light"
                 android:gravity="center_vertical"
                 android:padding="16dp"
-                android:text="@string/lorem_ipsum_short"
                 android:textColor="@color/blue"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"

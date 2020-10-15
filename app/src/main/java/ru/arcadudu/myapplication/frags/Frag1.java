@@ -45,10 +45,6 @@ public class Frag1 extends Fragment implements NoteDialog.MyDialogListener {
         fabAdd = view.findViewById(R.id.fabAdd);
 
 
-//        list.add(new Note("Title1", getResources().getString(R.string.lorem_ipsum_short)));
-//        list.add(new Note("Title2", getResources().getString(R.string.lorem_ipsum_short)));
-//        list.add(new Note("Title3", getResources().getString(R.string.lorem_ipsum_short)));
-//        list.add(new Note("Title4", getResources().getString(R.string.lorem_ipsum_short)));
 
         setEmptyString(list);
         adapter = new NoteAdapter(list, getContext());
